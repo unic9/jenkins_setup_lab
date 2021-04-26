@@ -1,0 +1,58 @@
+##After setting up Ec2 in aws, with the help of public IP of instance. install jenkins in the Ec2.
+##before installing jenkins we have to install java a dependency.
+##And after that install jenkins. And then
+
+systemctl start jenkins
+systemctl enable jenkins
+
+#then we can access jenkins throuhk 8080 port in html,... ex:- 192.168.33.22:8080 (combination of Ec2 public IP and 8080 port)
+
+we should copy key for jenkins through Ec2 instance (with cat cammand)
+
+###
+after that by taking new istance as asible server,.. install ansible 
+after that by opening an inventry file we have to enter an webserver IP addreses (ex: vim /etc/ansible/hosts)
+enter details of Private IP addres (ex: [web]
+                                        193.188,77.23
+
+###
+after that instal webserver by taking another new Ec2 instance
+yum install httpd
+systemctl start httpd
+systemctl enable httpd
+
+
+###
+##after that we have to create connection between ansible server and wes server with ssh
+ssh-keygen
+#after creating ssh we have to copy the ssh key in the web server. to do that we have to give web server permistions, to give permisions we have to go into ssh config file
+#at first create password for root 
+passwd root
+#and then go into ssh config file
+vim /etc/ssh/sshd_config
+#we have to remove # for permitrootlogin and for password authentication we have to keep yes
+systemctl restart sshd
+#and then we can copy keys by
+ssh-copy-id -i root@192.127.77.65 (root@web server ip)
+
+
+## same we should create connection between jenkins and ansible with same process above
+
+##in ansible server we have to create playbook
+
+##and then create connection between jenkins and github by creating webhook 
+
+
+##and the create connection between jenkins server and jenkins portal 
+
+##https://www.youtube.com/watch?v=LCoHRlbsxI4
+
+
+
+
+
+
+
+
+
+
